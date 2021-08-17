@@ -1,8 +1,10 @@
 import { useState, useRef, useContext } from "react";
 import AuthContext from "../../store/auth-context";
 import { useHistory } from "react-router-dom";
+// import { BootstrapSwitchButton } from "react-bootstrap";
 
 import classes from "./AuthForm.module.css";
+// import { import } from "mathjs";
 
 const AuthForm = () => {
   const history = useHistory();
@@ -69,33 +71,39 @@ const AuthForm = () => {
 
   return (
     <section className={classes.auth}>
-      <h1>{isLogin ? "Login" : "Sign Up"}</h1>
+      <h1>{isLogin ? "OCTOPUS" : "OCTOPUS"}</h1>
       <form onSubmit={submitHandler}>
         <div className={classes.control}>
           <label htmlFor="email">Your Email</label>
           <input type="email" id="email" required ref={emailInputRef} />
         </div>
-        <div className={classes.control}>
-          <label htmlFor="password">Your Password</label>
-          <input
-            type="password"
-            id="password"
-            required
-            ref={passwordInputRef}
-          />
-        </div>
+        {isLogin ? null : (
+          <div className={classes.control}>
+            <label htmlFor="password">Your Password</label>
+            <input
+              type="password"
+              id="password"
+              required
+              ref={passwordInputRef}
+            />
+          </div>
+        )}
         <div className={classes.actions}>
-          {!isLoading && (
+          {/* {!isLoading && (
             <button>{isLogin ? "Login" : "Create Account"}</button>
-          )}
+          )} */}
           {isLoading && <p>Loading...</p>}
-          <button
-            type="button"
-            className={classes.toggle}
+          {/* <button
+            type="toggle"
+            // className={classes.toggle}
             onClick={switchAuthModeHandler}
           >
             {isLogin ? "Create new account" : "Login with existing account"}
-          </button>
+          </button> */}
+          <label class="switch">
+            <input type="checkbox" />
+            <span class="slider round" onClick={switchAuthModeHandler}></span>
+          </label>
         </div>
       </form>
     </section>
